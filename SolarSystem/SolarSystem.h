@@ -18,14 +18,14 @@ private:
 	bool enableSunCenterPointer = false;
 	
 	//Temporary creator
-	Planet CreatePlanet(PlanetType type, sf::Color color, float radius, float revolutionRadius) {
+	Planet CreatePlanet(PlanetType type, sf::Color color, float radius, float revolutionRadius, float revolutionSpeed) {
 		sf::CircleShape mercuryShape(radius);
 		mercuryShape.setFillColor(color);
 
-		return Planet(type, mercuryShape, &sun, revolutionRadius);
+		return Planet(type, mercuryShape, &sun, revolutionRadius, revolutionSpeed);
 	}
 public:
-	const int MAX_PLANETS = 5;
+	const int MAX_PLANETS = 1;
 	SolarSystem(float width, float height) {
 		this->planets = new Planet[MAX_PLANETS];
 
@@ -33,10 +33,9 @@ public:
 		sunShape.setFillColor(DEFAULT_SUN_COLOR);
 		sunShape.setPosition((width - DEFAULT_SUN_RADIUS) / 2, (height - DEFAULT_SUN_RADIUS) / 2);
 
-
 		sun = Sun(sunShape);
 		for(int i = 0;i < MAX_PLANETS;i++)
-			planets[i] = CreatePlanet(PlanetType::Mercury, sf::Color(255,255,255), 5+i*3, i*70+50);
+			planets[i] = CreatePlanet(PlanetType::Mercury, sf::Color(255,255,255), 5+i*3, i*70+50, 1);
 
 		sunCenterPointer.setFillColor(sf::Color(0, 0, 0));
 		sunCenterPointer.setPosition(sf::Vector2f(sun.GetShape().getPosition().x + sun.GetShape().getRadius(),

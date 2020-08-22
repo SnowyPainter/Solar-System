@@ -9,7 +9,7 @@ using namespace std;
 
 const int WIDTH = 1400;
 const int HEIGHT = 800;
-const int INITMAXSTAR = 100;
+const int INITMAXSTAR = 200;
 const string TITLE = "Solar System";
 
 //Variables

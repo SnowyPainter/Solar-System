@@ -22,15 +22,20 @@ private:
 	float getSunRadius() {
 		return sun->GetShape().getRadius();
 	}
+	float getDegrees(float radian) {
+		return radian * (180.0 / 3.141592653589793238463);
+	}
 public:
 	float RevolutionRadius = 0;
+	float RevolutionSpeed = 0;
 
 	Planet() { }
-	Planet(PlanetType t, sf::CircleShape p, Sun* sun, float revolutionRadius = 0) {
+	Planet(PlanetType t, sf::CircleShape p, Sun* sun, float revolutionRadius = 0, float revolutionSpeed = 0) {
 		type = t;
 		planet = p;
 		this->sun = sun;
 		RevolutionRadius = revolutionRadius;
+		RevolutionSpeed = revolutionSpeed;
 	}
 	void SetSun(Sun* sun) {
 		this->sun = sun;
@@ -47,13 +52,12 @@ public:
 		sf::Vector2f sunPos = getSunPos();
 		float sunRadius = getSunRadius();
 
-		float x = RevolutionRadius * cos(angle) + sunPos.x + sunRadius - planet.getRadius();
-		float y = RevolutionRadius * sin(angle) + sunPos.y + sunRadius - planet.getRadius();
+		float x = RevolutionRadius * cos(getDegrees(angle)) + sunPos.x + sunRadius - planet.getRadius();
+		float y = RevolutionRadius * sin(getDegrees(angle)) + sunPos.y + sunRadius - planet.getRadius();
 		
 		planet.setPosition(sf::Vector2f(x,y));
-		angle+=0.01f;
+		angle+=RevolutionSpeed; //360 1
 
-		cout << DistanceFromSun() << endl;
 	}
 	void Rotation() {
 
