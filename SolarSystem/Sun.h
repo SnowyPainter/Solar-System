@@ -2,21 +2,20 @@
 #pragma warning(disable : 4244)
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "SolarSystemElement.h"
 
 using namespace std;
 
-class Sun {
+class Sun: public SolarSystemElement {
 private:
-	sf::CircleShape sun; //It must be textrued
+	
 public:
-	Sun() { }
-	Sun(sf::CircleShape sun) {
-		this->sun = sun;
+	Sun() :SolarSystemElement() {}
+	Sun(sf::CircleShape sun):SolarSystemElement(sun) {
+		
 	}
 	void Rotate() {
 		
 	}
-	sf::CircleShape GetShape() {
-		return sun;
-	}
+
 };

@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Planet.h" />
     <ClInclude Include="SolarSystem.h" />
+    <ClInclude Include="SolarSystemElement.h" />
     <ClInclude Include="Sun.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
