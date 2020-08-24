@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include "SolarSystemElement.h"
+
 using namespace std;
 
 enum class PlanetType {
@@ -17,8 +18,6 @@ enum class PlanetType {
 	Uranus,
 	Neptune,
 };
-
-
 
 class Planet: public SolarSystemElement {
 private:
@@ -57,7 +56,14 @@ public:
 	void SetSun(Sun* sun) {
 		this->sun = sun;
 	}
-	
+	float GetRevolutionPeriod(float relativePeriodSpeedOneSecond) {
+		return relativePeriodSpeedOneSecond / RevolutionSpeed;
+	}
+	PlanetType GetType() {
+		return type;
+	}
+
+	//Unused
 	float DistanceFromSun() {
 		sf::Vector2f sunPos = getSunPos();
 		sf::Vector2f p = shape.getPosition();
