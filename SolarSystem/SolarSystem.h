@@ -22,9 +22,9 @@ private:
 	Planet* planets; //수금지화목토천해
 	sf::Vector2f sunCenterPosition;
 
-	//지구 기준하에 비례합니다.
+	//지구 기준하에 비례
 	float revolvePeriodSecond = DEFAULT_EARTH_REVOLVE_PERIOD;
-	float orbitalPeriodSpeed = EARTH_OrbitalPeriod_Second / revolvePeriodSecond; //3초에 1회 공전
+	float orbitalPeriodSpeed = EARTH_OrbitalPeriod_Second / revolvePeriodSecond; //1초에 1회 공전
 
 	struct planetData {
 		wstring dscrp;
@@ -66,7 +66,7 @@ private:
 	};
 
 	float cycleToRelativeSpeed(float relativeEarth) {
-		return orbitalPeriodSpeed / relativeEarth * orbitalPeriodSpeed;
+		return orbitalPeriodSpeed / relativeEarth * EARTH_OrbitalPeriod_Second; 
 	}
 	float getRevoleCycle(PlanetType t) {
 		switch (t) {

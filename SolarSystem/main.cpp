@@ -18,8 +18,6 @@ int scalingNumber = 1;
 bool isStop = false;
 sf::CircleShape* selectedPlanet = nullptr;
 
-sf::RenderWindow app(sf::VideoMode(WIDTH, HEIGHT), TITLE);
-
 StarManagement starmanager(INITMAXSTAR, WIDTH, HEIGHT); //Background manager
 SolarSystem solarSystem = SolarSystem(WIDTH, HEIGHT);
 
@@ -97,13 +95,9 @@ void mouseButtonEventCallback(sf::Event::EventType type, sf::Event::MouseButtonE
 	}
 }
 
-void initApp() {
-	app.setFramerateLimit(60);
-}
-
-bool initVariables() {
+bool initVariables(string* errMsg) {
 	if (!basicFont.loadFromFile("./IBMPlexSansKR-Regular.ttf")) {
-		cout << "폰트 NanumGothic-Regular.ttf 를 불러오는데 실패했습니다." << endl;
+		*errMsg = "폰트 NanumGothic-Regular.ttf 를 불러오는데 실패했습니다.";
 		return false;
 	}
 
@@ -117,10 +111,19 @@ bool initVariables() {
 
 int main()
 {
-	initApp();
-	if (!initVariables())
+	string errMsg;
+	if (!initVariables(&errMsg)) {
+		cout << errMsg << endl;
+		cout << "엔터키를 누르시면 종료됩니다." << endl;
+		getchar();
 		return -1;
+	}
 
+	sf::RenderWindow app(sf::VideoMode(WIDTH, HEIGHT), TITLE);
+	app.setFramerateLimit(60);
+
+	cout << "프로그램 초기화 완료" << endl;
+	
 	sf::Clock c;
 
 	while (app.isOpen())
