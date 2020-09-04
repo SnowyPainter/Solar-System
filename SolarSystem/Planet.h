@@ -57,7 +57,7 @@ public:
 		this->sun = sun;
 	}
 	float GetRevolutionPeriod(float relativePeriodSpeedOneSecond) {
-		return relativePeriodSpeedOneSecond / RevolutionSpeed;
+		return RevolutionSpeed / relativePeriodSpeedOneSecond;
 	}
 	PlanetType GetType() {
 		return type;
