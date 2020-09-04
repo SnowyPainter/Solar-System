@@ -32,11 +32,11 @@ void cleanSelectedPlanetUI() {
 
 void mouseWheelEventCallback(sf::Event::EventType type, sf::Event::MouseWheelEvent event) {
 	if (event.delta == 1) {
-		solarSystem.SizeSunRadiusAlpha(scalingNumber);
+		//solarSystem.SizeSunRadiusAlpha(scalingNumber);
 		solarSystem.SizePlanetRadiusAlpha(scalingNumber);
 	}
 	else if (event.delta == -1) {
-		solarSystem.SizeSunRadiusAlpha(-scalingNumber);
+		//solarSystem.SizeSunRadiusAlpha(-scalingNumber);
 		solarSystem.SizePlanetRadiusAlpha(-scalingNumber);
 	}
 }
@@ -148,9 +148,10 @@ int main()
 		}
 		if (selectedPlanet != nullptr) {
 			sf::Vector2f planetPos = selectedPlanet->getPosition();
+			sf::FloatRect periodTextBound = selectedPlanetRevolvePeriod.getLocalBounds();
 			float planetR = selectedPlanet->getRadius();
-			sf::Vector2f leftParaDistance(planetR * 2.3, 5);
-			sf::Vector2f upParaDistance(selectedPlanetRevolvePeriod.getLocalBounds().width / -2 + planetR, planetR * -2.5);
+			sf::Vector2f leftParaDistance(planetR * 2, -5);
+			sf::Vector2f upParaDistance(periodTextBound.width / -2 + planetR, -periodTextBound.height - 10);
 
 			selectedPlanetInformation.setPosition(planetPos + leftParaDistance);
 			selectedPlanetRevolvePeriod.setPosition(planetPos + upParaDistance);
