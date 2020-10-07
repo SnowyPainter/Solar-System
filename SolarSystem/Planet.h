@@ -46,7 +46,7 @@ public:
 		type = PlanetType::None;	
 		sun = nullptr;
 	}
-	Planet(PlanetType t, sf::CircleShape p, Sun* sun, float revolutionRadius = 0, float revolutionSpeed = 360) 
+	Planet(PlanetType t, sf::CircleShape p, Sun* sun, float revolutionRadius = 0, float revolutionSpeed = 360.0f) 
 		:SolarSystemElement(p){
 		type = t;
 		this->sun = sun;
@@ -57,7 +57,7 @@ public:
 		this->sun = sun;
 	}
 	float GetRevolutionPeriod(float relativePeriodSpeedOneSecond) {
-		return RevolutionSpeed / relativePeriodSpeedOneSecond;
+		return relativePeriodSpeedOneSecond / RevolutionSpeed;
 	}
 	PlanetType GetType() {
 		return type;
